@@ -1,6 +1,6 @@
-# EkagraTube Backend
+# YoursTube Backend
 
-Backend service for **EkagraTube**, a focused learning platform built around YouTube educational content.
+Backend service for **YoursTube**, a focused learning platform built around YouTube educational content.
 
 ## Tech Stack
 
@@ -10,7 +10,7 @@ Backend service for **EkagraTube**, a focused learning platform built around You
 
 ## Overview
 
-This repository contains the backend services and APIs for EkagraTube.
+This repository contains the backend services and APIs for YoursTube.
 
 The backend will handle the application's core business logic, data management, integrations, and communication with the frontend.
 
