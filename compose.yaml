@@ -1,0 +1,15 @@
+services:
+  postgres:
+    image: postgres:17
+    container_name: yourstube-postgres
+    environment:
+      POSTGRES_DB: yourstube
+      POSTGRES_USER: yourstube
+      POSTGRES_PASSWORD: yourstube
+    ports:
+      - "5432:5432"
+    volumes:
+      - yourstube-postgres-data:/var/lib/postgresql/data
+
+volumes:
+  yourstube-postgres-data:
