@@ -6,25 +6,39 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.nio.channels.Channel;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 
 @Entity
-@Table(name = "users")
+@Table(name = "videos")
 @Getter
 @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class UserEntity {
+public class VideoEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, length = 100)
-    private String username;
+    @Column(name = "youtube_video_id", nullable = false, unique = true, length = 20)
+    private String youtubeVideoId;
 
-    @Column(nullable = false, unique = true, length = 255)
-    private String email;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "channel_id", nullable = false)
+    private Channel channel;
+
+    @Column(nullable = false, length = 500)
+    private String title;
+
+    @Column(columnDefinition = "TEXT")
+    private String description;
+
+    @Column(name = "thumbnail_url", columnDefinition = "TEXT")
+    private String thumbnailUrl;
+
+    @Column(name = "duration_seconds")
+    private Long durationSeconds;
 
     @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;

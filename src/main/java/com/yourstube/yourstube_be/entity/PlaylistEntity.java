@@ -5,26 +5,45 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.apache.catalina.User;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 
 @Entity
-@Table(name = "users")
+@Table(name = "playlists")
 @Getter
 @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class UserEntity {
+public class PlaylistEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, length = 100)
-    private String username;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "created_by", nullable = false)
+    private UserEntity createdBy;
 
-    @Column(nullable = false, unique = true, length = 255)
-    private String email;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "updated_by", nullable = false)
+    private UserEntity updatedBy;
+
+    @Column(nullable = false, length = 255)
+    private String title;
+
+    @Column(columnDefinition = "TEXT")
+    private String description;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false, length = 30)
+    private PlaylistType type;
+
+    @Column(name = "youtube_playlist_id", length = 100)
+    private String youtubePlaylistId;
+
+    @Column(name = "youtube_playlist_url", columnDefinition = "TEXT")
+    private String youtubePlaylistUrl;
 
     @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
