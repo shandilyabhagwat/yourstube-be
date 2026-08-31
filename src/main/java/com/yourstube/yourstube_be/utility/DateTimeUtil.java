@@ -1,4 +1,9 @@
 package com.yourstube.yourstube_be.utility;
 
-public class DateTimeUtil {
+public final class DateTimeUtil {
+
+    private DateTimeUtil() {
+        // Prevent instantiation
+    }
+
 }
