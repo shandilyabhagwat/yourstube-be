@@ -1,5 +1,7 @@
 package com.yourstube.yourstube_be.service;
 
+import com.google.api.services.youtube.model.Playlist;
+
 public interface YouTubeService {
-    String getPlaylist(String playlistId);
+    Playlist getPlaylist(String playlistId);
 }
